@@ -4,21 +4,38 @@ A Codex skill for writing and reviewing C# question generators for [Dividni's MC
 
 The skill checks each answer option before coding, follows the target exam's C# conventions, and produces generators that can be reviewed before upload. It covers single questions, diagrams, and groups of questions sharing one stem. It does not cover non-MCQ question types.
 
-## Install
+## Add to Codex
 
-Clone this repository into your Codex skills directory, using the skill name as the folder name:
+Choose one installation method.
+
+### Ask Codex to install it
+
+Paste this into a Codex chat:
+
+```text
+$skill-installer Install https://github.com/leo06051212/dividni-mcq-csharp-skill from the repository root (path ".") and name it generating-dividni-mcq-csharp.
+```
+
+The `SKILL.md` file is at this repository's root. Specifying both the root path and the skill name lets the installer place it in your local Codex skills directory.
+
+### Clone it manually
+
+Codex also discovers user skills in `~/.agents/skills`. On macOS or Linux:
 
 ```bash
-git clone https://github.com/leo06051212/dividni-mcq-csharp-skill.git ~/.codex/skills/generating-dividni-mcq-csharp
+mkdir -p ~/.agents/skills
+git clone https://github.com/leo06051212/dividni-mcq-csharp-skill.git ~/.agents/skills/generating-dividni-mcq-csharp
 ```
 
 On Windows PowerShell:
 
 ```powershell
-git clone https://github.com/leo06051212/dividni-mcq-csharp-skill.git (Join-Path $env:USERPROFILE '.codex\skills\generating-dividni-mcq-csharp')
+$skillsRoot = Join-Path $env:USERPROFILE '.agents\skills'
+New-Item -ItemType Directory -Force -Path $skillsRoot | Out-Null
+git clone https://github.com/leo06051212/dividni-mcq-csharp-skill.git (Join-Path $skillsRoot 'generating-dividni-mcq-csharp')
 ```
 
-If you use a custom `CODEX_HOME`, put the repository in its `skills/generating-dividni-mcq-csharp` directory instead.
+After either method, invoke `$generating-dividni-mcq-csharp` in Codex. Codex detects newly added skills automatically; if it does not appear, restart Codex. See the [official OpenAI skill documentation](https://learn.chatgpt.com/docs/build-skills).
 
 ## Use
 
